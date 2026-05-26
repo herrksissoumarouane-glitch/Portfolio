@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Marouane Ksissou | Full Stack Developer</title>
+
+    <meta name="description" content="Portfolio von Marouane Ksissou – Full Stack Developer spezialisiert auf moderne Webentwicklung mit Laravel, React und JavaScript.">
+    <meta name="author" content="Marouane Ksissou">
+    <meta name="theme-color" content="#2563eb">
+
+    <!-- SEO -->
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="Marouane Ksissou, Full Stack Developer, Laravel, React, Webentwicklung, Portfolio">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Marouane Ksissou | Full Stack Developer">
+    <meta property="og:description" content="Modernes Portfolio von Marouane Ksissou">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="projekte-bilder/profile.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="animated-favicon-pulse.svg">
+    <link rel="alternate icon" href="favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#2563eb',
+                        'brand-dark': '#1d4ed8',
+                    },
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="overflow-x-hidden bg-[#fafafa] text-slate-900 dark:bg-[#050505] dark:text-slate-100 transition-colors duration-700 antialiased relative">  
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-outline" aria-hidden="true"></div>
+    
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 z-[1000] bg-white dark:bg-[#050505] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-slate-600 dark:text-slate-400 text-sm font-bold tracking-[0.3em] uppercase animate-pulse font-mono">
+                MAROUANE<span class="text-blue-600">.</span>
+            </p>
+        </div>
+    </div>
+    
+    <!-- Grain Overlay -->
+    <div class="grain" aria-hidden="true"></div>
+    
+    <!-- Scroll Progress Bar -->
+    <div id="progress-bar" class="fixed top-0 left-0 h-[3px] bg-blue-600 z-[100]" style="width: 0%" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+    
+  
+<!-- Navigation -->
+<nav class="fixed w-full top-0 left-0 backdrop-blur-xl bg-white/60 dark:bg-black/60 border-b border-slate-200/50 dark:border-slate-800/50 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <h1 class="text-xl font-black tracking-tighter hover:opacity-70 transition-opacity">
+            <a href="#home" class="nav-link font-display">MAROUANE</a><span class="text-blue-600">.</span>
+        </h1>
+        
+        <!-- Desktop Menu -->
+        <ul class="hidden md:flex items-center gap-10 text-[13px] uppercase tracking-widest font-bold">
+            <li><a href="#home" class="nav-link">Über mich</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#projekte" class="nav-link">Projekte</a></li>
+            <li><a href="#sprache" class="nav-link">Sprache</a></li>
+            <li><a href="#kontakt" class="px-5 py-2.5 bg-slate-900 dark:bg-blue-600 text-white rounded-full hover:shadow-lg hover:shadow-blue-500/30">Kontakt</a></li>
+            <li><button id="theme-toggle" class="hover:rotate-12 transition-transform p-2"><svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></button></li>
+        </ul>
+        
+        <!-- Mobile Icons (nur ein mobile-menu-button) -->
+        <div class="flex items-center gap-3 md:hidden">
+            <button id="theme-toggle-mobile" class="p-2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                </svg>
+            </button>
+            <button 
+    id="mobile-menu-button"
+    type="button"
+    aria-label="Menü öffnen"
+    aria-expanded="false"
+    aria-controls="mobile-menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Menu (Dropdown) -->
+<div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-[#050505] border-t border-slate-200 dark:border-slate-800">
+    <ul class="flex flex-col items-center py-6 gap-4 text-[15px] uppercase tracking-widest font-bold">
+        <li><a href="#home" class="mobile-nav-link">Über mich</a></li>
+        <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
+        <li><a href="#projekte" class="mobile-nav-link">Projekte</a></li>
+        <li><a href="#sprache" class="mobile-nav-link">Sprache</a></li>
+        <li><a href="#kontakt" class="mobile-nav-link">Kontakt</a></li>
+    </ul>
+</div>
+   
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center px-6 relative overflow-hidden pt-20">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div class="fade-up">
+                <div class="flex items-center gap-3 mb-8">
+                    <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span></span>
+                    <span class="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 font-mono">Standort: Marokko</span>
+                </div>
+                <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter leading-[0.9] font-display">Hallo, <br /><span class="text-blue-600 relative inline-block group">Ich bin <span id="typewriter"></span><span class="absolute -bottom-2 left-0 w-full h-1 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-full"></span></span></h1>
+                <p class="text-xl text-slate-600 dark:text-slate-400 mb-6 leading-relaxed max-w-md font-medium">Full Stack Developer mit 2 Jahren Erfahrung in Webentwicklung. Ich baue moderne, performante Webanwendungen.<span class="block mt-2 opacity-50 italic text-sm">— Angehender Fachinformatiker</span></p>
+                <div class="flex items-center gap-4 mb-10">
+                    <a href="Zertifikate/Marouane-ksissou-Lebenslauf.pdf" target="_blank" class="group relative px-6 py-3 bg-green-600 text-white rounded-full font-bold overflow-hidden"><span class="relative z-10">📄 Lebenslauf</span><div class="absolute inset-0 bg-green-700 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div></a>
+                    <a href="#kontakt" class="group relative px-6 py-3 bg-black dark:bg-white dark:text-black text-white rounded-full font-bold overflow-hidden"><span class="relative z-10">Kontakt</span><div class="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div></a>
+                </div>
+            </div>
+            <div class="flex justify-center md:justify-end perspective-container fade-right">
+                <div class="relative" id="hero-3d-card">
+                    <div class="card-3d relative z-10 w-72 h-96 md:w-80 md:h-[450px]"><div class="card-3d-inner w-full h-full" id="tilt-card"><div class="absolute inset-0 overflow-hidden rounded-2xl shadow-2xl"><img src="projekte-bilder/profile.png" alt="Marouane Ksissou – Full Stack Developer "  class="w-full h-full object-cover" loading="eager" fetchpriority="high" decoding="async"><div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 flex items-end p-6"><p class="text-white text-sm font-bold uppercase tracking-widest">Marouane Ksissou <br /><span class="text-xs font-normal">Full Stack Developer</span></p></div></div></div></div>
+                    <div class="absolute -top-6 -right-6 w-32 h-32 border-t-2 border-r-2 border-blue-600/30 rounded-tr-3xl" aria-hidden="true"></div>
+                    <div class="absolute -bottom-6 -left-6 w-32 h-32 border-b-2 border-l-2 border-blue-600/30 rounded-bl-3xl" aria-hidden="true"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-white dark:bg-[#050505] transition-colors duration-700">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-16 text-center fade-up">
+                <h2 class="text-xs font-black uppercase tracking-[0.3em] text-blue-600 mb-2 font-mono">Expertise</h2>
+                <h3 class="text-4xl md:text-5xl font-bold tracking-tighter font-display">Fähigkeiten &amp; Tech-Stack</h3>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="skills-container">
+                <!-- Frontend -->
+                <div class="fade-up">
+                    <h4 class="text-sm font-black uppercase tracking-widest text-slate-400 mb-4 font-mono">Frontend</h4>
+                    <div class="skill-item mb-4 p-5 rounded-2xl border bg-slate-50/50 dark:bg-slate-900/20"><div class="flex justify-between items-center mb-2"><span class="font-bold flex items-center gap-2"><img src="https://skillicons.dev/icons?i=html" alt="HTML" class="w-8 h-8 object-contain" loading="lazy">HTML</span><span class="text-blue-600 font-black counter-value font-mono" data-target="100">0%</span></div><div class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden"><div class="progress-bar h-full bg-blue-600 rounded-full" style="width:0%"></div></div></div>
+                    <div class="skill-item mb-4 p-5 rounded-2xl border dark:border-slate-800"><div class="flex justify-between items-center mb-2"><span class="font-bold flex items-center gap-2"><img src="https://skillicons.dev/icons?i=css" alt="CSS" class="w-8 h-8 object-contain" loading="lazy">CSS</span><span class="text-blue-600 font-black counter-value font-mono" data-target="100">0%</span></div><div class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden"><div class="progress-bar h-full bg-blue-600 rounded-full" style="width:0%"></div></div></div>
+                    <div class="skill-item mb-4 p-5 rounded-2xl border dark:border-slate-800"><div class="flex justify-between items-center mb-2"><span class="font-bold flex items-center gap-2"><img src="https://skillicons.dev/icons?i=tailwind" alt="Tailwind" class="w-8 h-8 object-contain" loading="lazy">Tailwind</span><span class="text-blue-600 font-black counter-value font-mono" data-target="100">0%</span></div><div class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden"><div class="progress-bar h-full bg-blue-600 rounded-full" style="width:0%"></div></div></div>
+                    <div class="skill-item mb-4 p-5 rounded-2xl border dark:border-slate-800"><div class="flex justify-between items-center mb-2"><span class="font-bold flex items-center gap-2"><img src="https://skillicons.dev/icons?i=javascript" alt="JavaScript" class="w-8 h-8 object-contain" loading="lazy">JavaScript</span><span class="text-blue-600 font-black counter-value font-mono" data-target="80">0%</span></div><div class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden"><div class="progress-bar h-full bg-blue-600 rounded-full" style="width:0%"></div></div></div>
+                    <div class="skill-item p-5 rounded-2xl border dark:border-slate-800"><div class="flex justify-between items-center mb-2"><span class="font-bold flex items-center gap-2"><img src="https://skillicons.dev/icons?i=react" alt="React" class="w-8 h-8 object-contain" loading="lazy">React</span><span class="text-blue-600 font-black counter-value font-mono" data-target="80">0%</span></div><div class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden"><div class="progress-bar h-full bg-blue-600 rounded-full" style="width:0%"></div></div></div>
+                </div>
+                <!-- Backend -->
+                <div class="fade-up">
+                    <h4 class="text-sm font-black uppercase tracking-widest text-slate-400 mb-4 font-mono">Backend</h4>
+                    <div class="skill-item mb-4 p-5 rounded-2xl border dark:border-slate-800"><div class="flex justify-between items-center mb-2"><span class="font-bold flex items-center gap-2"><img src="https://skillicons.dev/icons?i=python" alt="Python" class="w-8 h-8 object-contain" loading="lazy">Python &amp; OOP</span><span class="text-blue-600 font-black counter-value font-mono" data-target="65">0%</span></div><div class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden"><div class="progress-bar h-full bg-blue-600 rounded-full" style="width:0%"></div></div></div>
+                    <div class="skill-item mb-4 p-5 rounded-2xl border dark:border-slate-800"><div class="flex justify-between items-center mb-2"><span class="font-bold flex items-center gap-2"><img src="https://skillicons.dev/icons?i=php" alt="PHP" class="w-8 h-8 object-contain" loading="lazy">PHP</span><span class="text-blue-600 font-black counter-value font-mono" data-target="70">0%</span></div><div class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden"><div class="progress-bar h-full bg-blue-600 rounded-full" style="width:0%"></div></div></div>
+                    <div class="skill-item mb-4 p-5 rounded-2xl border dark:border-slate-800"><div class="flex justify-between items-center mb-2"><span class="font-bold flex items-center gap-2"><img src="https://skillicons.dev/icons?i=laravel" alt="Laravel" class="w-8 h-8 object-contain" loading="lazy">Laravel</span><span class="text-blue-600 font-black counter-value font-mono" data-target="90">0%</span></div><div class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden"><div class="progress-bar h-full bg-blue-600 rounded-full" style="width:0%"></div></div></div>
+                    <div class="skill-item p-5 rounded-2xl border dark:border-slate-800"><div class="flex justify-between items-center mb-2"><span class="font-bold flex items-center gap-2"><img src="https://skillicons.dev/icons?i=java" alt="Java" class="w-8 h-8 object-contain" loading="lazy">Java</span><span class="text-blue-600 font-black counter-value font-mono" data-target="20">0%</span></div><div class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden"><div class="progress-bar h-full bg-blue-600 rounded-full" style="width:0%"></div></div></div>
+                </div>
+                <!-- Datenbanken -->
+                <div class="fade-up">
+                    <h4 class="text-sm font-black uppercase tracking-widest text-slate-400 mb-4 font-mono">Datenbanken</h4>
+                    <div class="skill-item mb-4 p-5 rounded-2xl border dark:border-slate-800"><div class="flex justify-between items-center mb-2"><span class="font-bold flex items-center gap-2"><img src="https://skillicons.dev/icons?i=mysql" alt="MySQL" class="w-8 h-8 object-contain" loading="lazy">MySQL</span><span class="text-blue-600 font-black counter-value font-mono" data-target="85">0%</span></div><div class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden"><div class="progress-bar h-full bg-blue-600 rounded-full" style="width:0%"></div></div></div>
+                    <div class="skill-item mb-4 p-5 rounded-2xl border dark:border-slate-800"><div class="flex justify-between items-center mb-2"><span class="font-bold flex items-center gap-2"><img src="https://skillicons.dev/icons?i=mongodb" alt="MongoDB" class="w-8 h-8 object-contain" loading="lazy">MongoDB</span><span class="text-blue-600 font-black counter-value font-mono" data-target="70">0%</span></div><div class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden"><div class="progress-bar h-full bg-blue-600 rounded-full" style="width:0%"></div></div></div>
+                    <div class="skill-item p-5 rounded-2xl border dark:border-slate-800"><div class="flex items-center gap-2 flex-wrap"><span class="font-bold flex items-center gap-2"><img src="https://skillicons.dev/icons?i=github" alt="GitHub" class="w-8 h-8 object-contain" loading="lazy">Git &amp; GitHub</span><span class="text-[10px] px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 rounded-full font-mono">SCRUM</span><span class="text-[10px] px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 rounded-full font-mono">Agile</span></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projekte" class="py-24 bg-slate-50 dark:bg-[#0a0a0a]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-16 text-center fade-up">
+                <h2 class="text-xs font-black uppercase tracking-[0.3em] text-blue-600 mb-2 font-mono">MEINE ARBEIT</h2>
+                <h3 class="text-4xl md:text-5xl font-bold tracking-tighter font-display">Projekte</h3>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </div>
+    </section>
+    
+    <!-- Language Section -->
+    <section id="sprache" class="py-24 bg-white dark:bg-[#050505]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-16 text-center fade-up">
+                <h2 class="text-xs font-black uppercase tracking-[0.3em] text-blue-600 mb-2 font-mono">Kommunikation</h2>
+                <h3 class="text-4xl md:text-5xl font-bold tracking-tighter font-display">Sprachkenntnisse</h3>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-card p-6 rounded-2xl fade-up"><div class="flex justify-between"><span class="text-5xl" role="img" aria-label="Marokko">🇲🇦</span><span class="text-[10px] font-black text-blue-500 bg-blue-500/10 px-3 py-1.5 rounded-full font-mono">Muttersprache</span></div><h4 class="font-bold text-xl mt-2 font-display">Arabisch</h4><div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full mt-2"><div class="h-full bg-blue-600 rounded-full w-full"></div></div></div>
+                <div class="glass-card p-6 rounded-2xl fade-up"><div class="flex justify-between"><span class="text-5xl" role="img" aria-label="Deutschland">🇩🇪</span><div class="flex items-center gap-1"><span class="text-[10px] font-black text-green-500 bg-green-500/10 px-3 py-1.5 rounded-full font-mono">B2 Zertifiziert</span><a href="Zertifikate/B2 Zertifikat.pdf" target="_blank" rel="noopener noreferrer" class="text-[9px] font-semibold text-blue-500 underline ml-1" aria-label="B2 Zertifikat öffnen">📄Herunterladen</a></div></div><h4 class="font-bold text-xl mt-2 font-display">Deutsch</h4><div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full mt-2"><div class="h-full bg-blue-600 rounded-full w-3/4"></div></div></div>
+                <div class="glass-card p-6 rounded-2xl fade-up"><div class="flex justify-between"><span class="text-5xl" role="img" aria-label="Großbritannien">🇬🇧</span><span class="text-[10px] font-black bg-slate-500/10 px-3 py-1.5 rounded-full font-mono">B2</span></div><h4 class="font-bold text-xl mt-2 font-display">Englisch</h4><div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full mt-2"><div class="h-full bg-blue-600 rounded-full w-3/4"></div></div></div>
+                <div class="glass-card p-6 rounded-2xl fade-up"><div class="flex justify-between"><span class="text-5xl" role="img" aria-label="Frankreich">🇫🇷</span><div class="flex items-center gap-1"><span class="text-[10px] font-black text-green-500 bg-green-500/10 px-3 py-1.5 rounded-full font-mono">B1</span><a href="Zertifikate/franzoesisch-b1.pdf" target="_blank" rel="noopener noreferrer" class="text-[9px] font-semibold text-blue-500 underline ml-1" aria-label="Französisch B1 Zertifikat öffnen">📄Herunterladen</a></div></div><h4 class="font-bold text-xl mt-2 font-display">Französisch</h4><div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full mt-2"><div class="h-full bg-blue-600 rounded-full w-1/2"></div></div></div>
+                <div class="glass-card p-6 rounded-2xl fade-up"><div class="flex justify-between"><span class="text-5xl" role="img" aria-label="Spanien">🇪🇸</span><span class="text-[10px] font-black bg-slate-500/10 px-3 py-1.5 rounded-full font-mono">A1</span></div><h4 class="font-bold text-xl mt-2 font-display">Spanisch</h4><div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full mt-2"><div class="h-full bg-blue-600 rounded-full w-1/4"></div></div></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="kontakt" class="py-20 bg-white dark:bg-[#050505]">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 font-display">Lass uns zusammenarbeiten.</h2>
+            <div class="w-20 h-1 bg-blue-600 mx-auto mb-6 rounded-full"></div>
+            <p class="text-slate-500 mb-10 max-w-lg mx-auto">Hast du ein spannendes Projekt? Schreib mir eine Nachricht oder vernetz dich.</p>
+            <div class="flex flex-wrap justify-center gap-4 mb-10">
+                <a href="mailto:herr.ksissou.marouane@gmail.com" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold hover:scale-105">E-Mail</a>
+                <a href="https://www.linkedin.com/in/marouane-ksissou" target="_blank" rel="noopener noreferrer" class="px-8 py-3 border rounded-full font-bold hover:border-blue-600">LinkedIn</a>
+                <a href="https://github.com/herrksissoumarouane-glitch" target="_blank" rel="noopener noreferrer" class="px-8 py-3 border rounded-full font-bold hover:border-blue-600">GitHub</a>
+            </div>
+            <div class="pt-8 border-t border-slate-200 dark:border-slate-800">
+                <div class="flex justify-center gap-4 text-xs text-slate-400 mb-4"><a href="impressum.html" class="hover:text-blue-600">Impressum</a><span aria-hidden="true">|</span><a href="datenschutz.html" class="hover:text-blue-600">Datenschutz</a></div>
+                <div class="text-[11px] uppercase tracking-[0.2em] text-slate-400 font-mono">Built with HTML · Tailwind · GSAP</div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Certificate Modal -->
+    <div id="certModal" class="fixed inset-0 z-[400] bg-black/90 backdrop-blur-md hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="certModalTitle"><div class="max-w-2xl w-full bg-white dark:bg-slate-900 rounded-2xl overflow-hidden"><div class="relative"><img id="certModalImage" src="" alt="" class="w-full h-auto"><button onclick="closeCertModal()" class="absolute top-3 right-3 bg-black/60 text-white w-8 h-8 rounded-full text-xl flex items-center justify-center hover:bg-black/80" aria-label="Schließen">&times;</button></div><div class="p-4 text-center"><p id="certModalTitle" class="font-semibold text-slate-800 dark:text-white"></p></div></div></div>
+    
+   <!-- Project Modal -->
+<div id="projectModal" class="fixed inset-0 z-[300] bg-black/80 backdrop-blur-md hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modalName">
+    <div class="max-w-5xl w-full bg-white dark:bg-slate-900 rounded-2xl max-h-[90vh] overflow-y-auto">
+        <!-- Image slider -->
+        <div class="relative">
+            <div class="swiper projectSwiper w-full h-[480px] md:h-[560px] lg:h-[640px]">
+                <div class="swiper-wrapper" id="modalSwiperWrapper"></div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+            <button onclick="closeProjectModal()" class="absolute top-3 right-3 z-20 bg-black/60 text-white w-8 h-8 rounded-full text-xl flex items-center justify-center hover:bg-black/80" aria-label="Modal schließen">&times;</button>
+        </div>
+        <!-- Content -->
+        <div class="p-6">
+            <h3 id="modalName" class="text-2xl font-bold font-display"></h3>
+            <div class="flex flex-wrap gap-2 my-2">
+                <span id="modalDate" class="text-xs text-blue-600 bg-blue-100 dark:bg-blue-900/30 px-2 py-1 rounded-full font-mono"></span>
+                <span id="modalCategory" class="text-xs text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-full font-mono"></span>
+            </div>
+            <div id="modalTech" class="flex flex-wrap gap-2 my-2"></div>
+            <p id="modalLongDesc" class="text-slate-600 dark:text-slate-300 text-sm my-4 leading-relaxed"></p>
+            <ul id="modalFeatures" class="list-disc pl-5 text-sm space-y-1 text-slate-600 dark:text-slate-300"></ul>
+            <div class="flex flex-wrap gap-3 mt-4">
+                <a id="modalGithub" href="#" target="_blank" rel="noopener noreferrer" class="px-5 py-2 bg-slate-800 dark:bg-slate-700 text-white rounded-full text-sm font-semibold hover:bg-slate-700">GitHub →</a>
+                <a id="modalDemo" href="#" target="_blank" rel="noopener noreferrer" class="px-5 py-2 bg-green-600 text-white rounded-full text-sm font-semibold hidden hover:bg-green-700">Live Demo 🚀</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+    
+</body>
+</html>

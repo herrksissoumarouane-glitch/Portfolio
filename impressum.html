@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Impressum von Marouane Ksissou - Full Stack Developer Portfolio">
+    <meta name="author" content="Marouane Ksissou">
+    <title>Impressum | Marouane Ksissou</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Animated Favicon -->
+    <link rel="icon" type="image/svg+xml" href="animated-favicon-pulse.svg">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { brand: '#2563eb' }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-[#fafafa] text-slate-900 dark:bg-[#050505] dark:text-slate-100 transition-colors duration-700 font-sans antialiased">
+
+    <!-- Infinity stars canvas (background) -->
+    <canvas id="stars-canvas" class="stars-canvas" aria-hidden="true"></canvas>
+
+    <div class="grain"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 left-0 backdrop-blur-xl bg-white/60 dark:bg-black/60 border-b border-slate-200/50 dark:border-slate-800/50 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-tighter hover:opacity-70 transition-opacity cursor-pointer">
+                <a href="index.html#home" class="nav-link">MAROUANE</a><span class="text-blue-600">.</span>
+            </h1>
+            <ul class="hidden md:flex items-center gap-10 text-[13px] uppercase tracking-widest font-bold">
+                <li><a href="index.html#home" class="nav-link">Über mich</a></li>
+                <li><a href="index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="index.html#projekte" class="nav-link">Projekte</a></li>
+                <li><a href="index.html#sprache" class="nav-link">Sprache</a></li>
+                <li><a href="index.html#kontakt" class="px-5 py-2.5 bg-slate-900 dark:bg-blue-600 text-white rounded-full transition-all">Kontakt</a></li>
+                <li>
+                    <button id="theme-toggle" class="hover:rotate-12 transition-transform p-2 outline-none">
+                        <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Impressum Content -->
+    <section class="min-h-screen flex items-center justify-center px-6 pt-32 pb-20">
+        <div class="max-w-4xl mx-auto w-full">
+            <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-xl p-8 md:p-12">
+                <h1 class="text-3xl md:text-4xl font-bold text-blue-600 mb-2">Impressum</h1>
+                <div class="w-16 h-1 bg-blue-600 mb-6 rounded-full"></div>
+                <p class="text-slate-500 dark:text-slate-400 mb-8">Angaben gemäß § 5 TMG</p>
+
+                <div class="space-y-6">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Verantwortlich für den Inhalt</h2>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Marouane Ksissou<br>
+                            Marokko
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Kontakt</h2>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            E-Mail: <a href="mailto:herr.ksissou.marouane@gmail.com" class="text-blue-600 hover:underline">herr.ksissou.marouane@gmail.com</a><br>
+                            Standort: Marokko
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Haftungsausschluss</h2>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                            Alle Inhalte dieses Portfolios wurden sorgfältig erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann ich jedoch keine Gewähr übernehmen.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Datenschutz</h2>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                            Diese Website erhebt und speichert keine personenbezogenen Daten. Bei Kontaktaufnahme per E-Mail werden die übermittelten Daten vertraulich behandelt.
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-200 dark:border-slate-800">
+                        <p class="text-slate-500 dark:text-slate-400 text-sm">
+                            <a href="datenschutz.html" class="text-blue-600 hover:underline">→ Datenschutzerklärung</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-10 text-center">
+                    <a href="index.html" class="inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-all">
+                        ← Zurück zur Startseite
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 bg-white dark:bg-[#050505] border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <p class="text-slate-500 dark:text-slate-400 text-sm">© 2026 Marouane Ksissou. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script>
+        const toggleBtn = document.getElementById("theme-toggle");
+        const themeIcon = document.getElementById("theme-icon");
+        const html = document.documentElement;
+
+        const getTheme = () => localStorage.getItem("theme") || 
+               (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+
+        const applyTheme = (theme) => {
+            const isDark = theme === "dark";
+            html.classList.toggle("dark", isDark);
+            themeIcon.innerHTML = isDark 
+                ? `<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`
+                : `<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>`;
+            localStorage.setItem("theme", theme);
+        };
+
+        applyTheme(getTheme());
+        toggleBtn.addEventListener("click", () => {
+            applyTheme(html.classList.contains("dark") ? "light" : "dark");
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
